@@ -41,7 +41,7 @@ if(!empty($_POST)){
       $_POST['nickname'],
       sha1($_POST['password'])
     ));
-    header('Location: ../index.php');
+    header('Location: index.php');
     exit();
   }
 }
@@ -88,7 +88,10 @@ if(!empty($_POST)){
         <p class="text-danger">※パスワードを6文字以上で入力してください</p>
         <?php endif; ?>
       </div>
+
       <div class="text-center mt-5"><input type="submit" value="登録" class="btn btn-primary w-100"></div>
+
+      <div class="text-center mt-4"><a href="index.php" class="text-secondary">すでに登録されている方</a></div>
     </form>
   </div>
 </body>

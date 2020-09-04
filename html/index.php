@@ -18,7 +18,7 @@ require('connect.php');
 <body class="bg-light">
   <div class="container">
 
-    <h2><?php ?>さん</h2>
+    <h2><?php ?></h2>
 
     <div class="row">
       <a href="" class="col-md-3 p-0"><img src="" class="w-100"></a>

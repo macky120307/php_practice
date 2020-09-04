@@ -11,6 +11,9 @@ if(!empty($_POST)){
   $member = $login->fetch();
 
   if($member){
+    $_SESSION['id'] = $member['id'];
+    $_SESSION['time'] = time();
+
     header('Location: ../index.php');
     exit();
   }else{
@@ -46,7 +49,15 @@ if(!empty($_POST)){
         <p class="text-danger">※ユーザーIDまたはパスワードが一致しません</p>
         <?php endif; ?>
       </div>
-      <div class="text-center mt-5"><input type="submit" value="ログイン" class="btn btn-primary w-100"></div>
+
+      <div>
+        <input type="checkbox" name="save" id="save" value="on">
+        <label for="save" class="m-0">次回からは自動的にログインする</label>
+      </div>
+
+      <div class="text-center mt-4"><input type="submit" value="ログイン" class="btn btn-primary w-100"></div>
+
+      <div class="text-center mt-4"><a href="register.php" class="text-secondary">会員登録はこちら</a></div>
     </form>
   </div>
 </body>
