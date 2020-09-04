@@ -2,7 +2,12 @@
 session_start();
 require('../connect.php');
 
+if($_COOKIE['user_id'] !== ''){
+  $user_id = $_COOKIE['user_id'];
+}
+
 if(!empty($_POST)){
+  $user_id = $_POST['user_id'];
   $login = $db->prepare('SELECT * FROM members WHERE user_id=? AND password=?');
   $login->execute(array(
     $_POST['user_id'],
@@ -13,6 +18,10 @@ if(!empty($_POST)){
   if($member){
     $_SESSION['id'] = $member['id'];
     $_SESSION['time'] = time();
+
+    if($_POST['save'] === 'on'){
+      setcookie('user_id', $_POST['user_id'], time()+60*60*24*14);
+    }
 
     header('Location: ../index.php');
     exit();
@@ -38,7 +47,7 @@ if(!empty($_POST)){
     <form action="" method="post">
       <div class="mb-3">
         <label for="user_id">ユーザーID</label><br>
-        <input type="text" name="user_id" id="user_id" pattern="^[0-9A-Za-z]+$" value="<?php echo htmlspecialchars($_POST['user_id'], ENT_QUOTES); ?>" class="w-100">
+        <input type="text" name="user_id" id="user_id" pattern="^[0-9A-Za-z]+$" value="<?php echo htmlspecialchars($email, ENT_QUOTES); ?>" class="w-100">
       </div>
       <div class="mb-4">
         <label for="password">パスワード</label><br>
@@ -57,7 +66,7 @@ if(!empty($_POST)){
 
       <div class="text-center mt-4"><input type="submit" value="ログイン" class="btn btn-primary w-100"></div>
 
-      <div class="text-center mt-4"><a href="register.php" class="text-secondary">会員登録はこちら</a></div>
+      <div class="text-center mt-4"><a href="register.php" class="text-muted">会員登録はこちら</a></div>
     </form>
   </div>
 </body>

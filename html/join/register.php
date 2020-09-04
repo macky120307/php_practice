@@ -33,7 +33,7 @@ if(!empty($_POST)){
 
   // エラーがないとき
   if(empty($error)){
-    // $_SESSION['member'] = $_POST;
+    $_SESSION['member'] = $_POST;
 
     $statement = $db->prepare('INSERT INTO members SET user_id=?, name=?, password=?, created=NOW()');
     $statement->execute(array(
@@ -41,7 +41,8 @@ if(!empty($_POST)){
       $_POST['nickname'],
       sha1($_POST['password'])
     ));
-    header('Location: index.php');
+
+    header('Location: done.php');
     exit();
   }
 }
@@ -91,7 +92,7 @@ if(!empty($_POST)){
 
       <div class="text-center mt-5"><input type="submit" value="登録" class="btn btn-primary w-100"></div>
 
-      <div class="text-center mt-4"><a href="index.php" class="text-secondary">すでに登録されている方</a></div>
+      <div class="text-center mt-4"><a href="index.php" class="text-muted">すでに登録されている方</a></div>
     </form>
   </div>
 </body>
