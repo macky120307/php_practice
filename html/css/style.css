@@ -39,3 +39,11 @@ textarea{
 .posted_container:hover .posted_text{
   opacity: 1;
 }
+
+.back_home{
+  line-height: 38px;
+}
+
+.post_view{
+  border: 1px #d3d3d3 solid;
+}

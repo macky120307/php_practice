@@ -16,9 +16,6 @@ if(isset($_SESSION['id']) && $_SESSION['time'] + 60*60*6 > time()){
 
 // リレーション
 $posts = $db->query('SELECT m.user_id, m.name, p.* FROM members m, posts p WHERE m.user_id=p.user_id ORDER BY p.created DESC');
-// $posts->fetch();
-
-
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +31,9 @@ $posts = $db->query('SELECT m.user_id, m.name, p.* FROM members m, posts p WHERE
   <div class="container">
 
     <div class="row my-5">
-      <div class="col-10"><a href="" class="h2 text-secondary"><?php echo $member['name']; ?>さん</a></div>
+      <div class="col-10">
+        <p class="h3"><?php echo htmlspecialchars($member['name'], ENT_QUOTES); ?>さん <a href="">@<?php echo htmlspecialchars($member['user_id'], ENT_QUOTES); ?></a></p>
+      </div>
       <div class="col-2"><a href="post.php" class="btn btn-primary w-100">投稿する</a></div>
     </div>
 
