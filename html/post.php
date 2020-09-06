@@ -15,7 +15,7 @@ if(!empty($_POST)){
   }
 
   if(empty($error)){
-    $image = date('YmdHis') . $__FILES['picture']['name'];
+    $image = date('YmdHis') . $_FILES['picture']['name'];
     move_uploaded_file($_FILES['picture']['tmp_name'], 'img/'. $image);
     $post = $db->prepare('INSERT INTO posts SET user_id=?, picture=?, comment=?, created=NOW()');
     $post->execute(array(
@@ -42,7 +42,7 @@ if(!empty($_POST)){
   <link rel="stylesheet" href="css/style.css">
   <title>PHP Practice | 投稿</title>
 </head>
-<body>
+<body class="bg-light">
   <div class="container mt-5 w-25">
     <form action="" method="post" enctype="multipart/form-data">
       <div class="mb-5">
@@ -59,6 +59,8 @@ if(!empty($_POST)){
         <textarea name="comment" rows="5" class="w-100"><?php echo htmlspecialchars($_POST['comment'], ENT_QUOTES); ?></textarea>
       </div>
       <div class="text-center mt-4"><input type="submit" value="投稿" class="btn btn-primary w-100"></div>
+
+      <div class="text-center mt-4"><a href="index.php" class="text-muted">ホームに戻る</a></div>
     </form>
   </div>
 </body>

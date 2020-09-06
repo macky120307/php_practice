@@ -14,6 +14,10 @@ if(isset($_SESSION['id']) && $_SESSION['time'] + 60*60*6 > time()){
   exit();
 }
 
+// リレーション
+$posts = $db->query('SELECT m.user_id, m.name, p.* FROM members m, posts p WHERE m.user_id=p.user_id ORDER BY p.created DESC');
+// $posts->fetch();
+
 
 ?>
 
@@ -29,16 +33,22 @@ if(isset($_SESSION['id']) && $_SESSION['time'] + 60*60*6 > time()){
 <body class="bg-light">
   <div class="container">
 
-    <div class="row mt-5">
-      <div class="col-10"><h2><?php echo $member['name']; ?>さん</h2></div>
+    <div class="row my-5">
+      <div class="col-10"><a href="" class="h2 text-secondary"><?php echo $member['name']; ?>さん</a></div>
       <div class="col-2"><a href="post.php" class="btn btn-primary w-100">投稿する</a></div>
     </div>
 
     <div class="row">
-      <a href="" class="col-md-3 p-0"><img src="" class="w-100"></a>
-      <a href="" class="col-md-3 p-0"><img src="" class="w-100"></a>
-      <a href="" class="col-md-3 p-0"><img src="" class="w-100"></a>
-      <a href="" class="col-md-3 p-0"><img src="" class="w-100"></a>
+      <?php foreach($posts as $post):?>
+        <div class="col-md-3 p-0 mb-2 posted_container">
+          <a href="view.php?id=<?php echo htmlspecialchars($post['id'], ENT_QUOTES); ?>">
+            <img class="posted_img" src="img/<?php echo htmlspecialchars($post['picture'], ENT_QUOTES); ?>">
+            <div class="posted_text" class="posted_container">
+              <p class="posted_user"><?php echo htmlspecialchars($post['user_id'], ENT_QUOTES); ?></p>
+            </div>
+          </a>
+        </div>
+      <?php endforeach; ?>
     </div>
   </div>
 </body>

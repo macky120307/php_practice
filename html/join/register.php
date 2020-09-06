@@ -64,7 +64,7 @@ if(!empty($_POST)){
     <form action="" method="post">
       <div class="mb-3">
         <label for="user_id">ユーザーID</label><br>
-        <input type="text" name="user_id" id="user_id" pattern="^[0-9A-Za-z]+$" value="<?php echo htmlspecialchars($_POST['user_id'], ENT_QUOTES); ?>" class="w-100">
+        <input type="text" name="user_id" id="user_id"  autocomplete="off" pattern="^[0-9A-Za-z]+$" value="<?php echo htmlspecialchars($_POST['user_id'], ENT_QUOTES); ?>" class="w-100">
         <?php if($error['user_id'] === 'blank'): ?>
         <p class="text-danger">※ユーザーIDを入力してください</p>
         <?php elseif($error['user_id'] === 'length'): ?>
@@ -75,7 +75,7 @@ if(!empty($_POST)){
       </div>
       <div class="mb-3">
         <label for="nickname">ニックネーム</label><br>
-        <input type="text" name="nickname" id="nickname" value="<?php echo htmlspecialchars($_POST['nickname'], ENT_QUOTES); ?>" class="w-100">
+        <input type="text" name="nickname" id="nickname" autocomplete="off" value="<?php echo htmlspecialchars($_POST['nickname'], ENT_QUOTES); ?>" class="w-100">
         <?php if($error['nickname'] === 'blank'): ?>
         <p class="text-danger">※ニックネームを入力してください</p>
         <?php endif; ?>

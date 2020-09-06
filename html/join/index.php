@@ -47,7 +47,7 @@ if(!empty($_POST)){
     <form action="" method="post">
       <div class="mb-3">
         <label for="user_id">ユーザーID</label><br>
-        <input type="text" name="user_id" id="user_id" pattern="^[0-9A-Za-z]+$" value="<?php echo htmlspecialchars($_POST['user_id'], ENT_QUOTES); ?>" class="w-100">
+        <input type="text" name="user_id" id="user_id" pattern="^[0-9A-Za-z]+$"  autocomplete="off" value="<?php echo htmlspecialchars($_POST['user_id'], ENT_QUOTES); ?>" class="w-100">
       </div>
       <div class="mb-4">
         <label for="password">パスワード</label><br>

@@ -24,7 +24,7 @@ if(!isset($_SESSION['member'])){
 </head>
 <body class="bg-light">
   <div class="container w-25">
-    <h2 class="mt-5 mb-3 text-center text-success">Welcome <?php echo htmlspecialchars($nickname, ENT_QUOTES); ?>さん！</h2>
+    <h2 class="mt-5 mb-3 text-center text-success">Welcome<br><?php echo htmlspecialchars($nickname, ENT_QUOTES); ?>さん！</h2>
     <h3 class="text-center">登録が完了しました</h3>
     <div class="text-center mt-5"><a href="index.php" class="btn btn-primary w-100">ログインする</a></div>
   </div>
