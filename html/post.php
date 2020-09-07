@@ -9,7 +9,7 @@ if(!empty($_POST)){
     $error['picture'] = 'blank';
   }else{
     $ext = substr($filename, -3);
-    if($ext != 'jpg' && $ext != 'gif' && $ext != 'png'){
+    if($ext != 'jpg' && $ext != 'gif' && $ext != 'png' && $ext != 'peg' && $ext != 'eic'){
       $error['picture'] = 'type';
     }
   }
