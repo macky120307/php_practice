@@ -24,8 +24,6 @@ if(!empty($_POST)){
       $_POST['comment']
     ));
 
-    unset($_SESSION['user_id']);
-
     header('Location: index.php');
     exit();
   }

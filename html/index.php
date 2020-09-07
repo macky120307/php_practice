@@ -2,10 +2,10 @@
 session_start();
 require('connect.php');
 
-if(isset($_SESSION['id']) && $_SESSION['time'] + 60*60*6 > time()){
+if(isset($_SESSION['user_id']) && $_SESSION['time'] + 60*60*6 > time()){
   $_SESSION['time'] = time();
-  $members = $db->prepare('SELECT * FROM members WHERE id=?');
-  $members->execute(array($_SESSION['id']));
+  $members = $db->prepare('SELECT * FROM members WHERE user_id=?');
+  $members->execute(array($_SESSION['user_id']));
   $member = $members->fetch();
 
   $_SESSION['user_id'] = $member['user_id'];

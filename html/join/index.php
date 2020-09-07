@@ -16,6 +16,7 @@ if(!empty($_POST)){
   $member = $login->fetch();
 
   if($member){
+    $_SESSION['user_id'] = $member['user_id'];
     $_SESSION['id'] = $member['id'];
     $_SESSION['time'] = time();
 

@@ -33,9 +33,12 @@ $posts->execute(array($_REQUEST['id']));
       </div>
       <div class="mt-5 post_view">
         <img src="img/<?php echo htmlspecialchars($post['picture'], ENT_QUOTES) ?>" class="w-100 h-auto">
-        <p class="mt-3 px-3 h4"><?php echo htmlspecialchars($post['comment'], ENT_QUOTES); ?></p>
+        <pre class="mt-3 px-3 h4"><?php echo htmlspecialchars($post['comment'], ENT_QUOTES); ?></pre>
         <p class="text-muted text-right m-0 p-3"><?php echo htmlspecialchars($post['created'], ENT_QUOTES); ?></p>
       </div>
+      <?php if($_SESSION['user_id'] === $post['user_id']): ?>
+        <div class="text-center my-5"><a href="delete.php?id=<?php echo htmlspecialchars($post['id'], ENT_QUOTES); ?>" class="text-danger">この投稿を削除する</a></div>
+      <?php endif; ?>
     <?php else: ?>
       <div>
         <p class="text-center h5">その投稿は削除されたか、URLを間違えています</p>
