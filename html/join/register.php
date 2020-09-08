@@ -33,7 +33,7 @@ if(!empty($_POST)){
 
   // エラーがないとき
   if(empty($error)){
-    // $_SESSION['member'] = $_POST;
+    $_SESSION['member'] = $_POST;
 
     $statement = $db->prepare('INSERT INTO members SET user_id=?, name=?, password=?, created=NOW()');
     $statement->execute(array(
@@ -41,7 +41,8 @@ if(!empty($_POST)){
       $_POST['nickname'],
       sha1($_POST['password'])
     ));
-    header('Location: ../index.php');
+
+    header('Location: done.php');
     exit();
   }
 }
@@ -63,7 +64,7 @@ if(!empty($_POST)){
     <form action="" method="post">
       <div class="mb-3">
         <label for="user_id">ユーザーID</label><br>
-        <input type="text" name="user_id" id="user_id" pattern="^[0-9A-Za-z]+$" value="<?php echo htmlspecialchars($_POST['user_id'], ENT_QUOTES); ?>" class="w-100">
+        <input type="text" name="user_id" id="user_id"  autocomplete="off" pattern="^[0-9A-Za-z]+$" value="<?php echo htmlspecialchars($_POST['user_id'], ENT_QUOTES); ?>" class="w-100">
         <?php if($error['user_id'] === 'blank'): ?>
         <p class="text-danger">※ユーザーIDを入力してください</p>
         <?php elseif($error['user_id'] === 'length'): ?>
@@ -74,7 +75,7 @@ if(!empty($_POST)){
       </div>
       <div class="mb-3">
         <label for="nickname">ニックネーム</label><br>
-        <input type="text" name="nickname" id="nickname" value="<?php echo htmlspecialchars($_POST['nickname'], ENT_QUOTES); ?>" class="w-100">
+        <input type="text" name="nickname" id="nickname" autocomplete="off" value="<?php echo htmlspecialchars($_POST['nickname'], ENT_QUOTES); ?>" class="w-100">
         <?php if($error['nickname'] === 'blank'): ?>
         <p class="text-danger">※ニックネームを入力してください</p>
         <?php endif; ?>
@@ -88,7 +89,10 @@ if(!empty($_POST)){
         <p class="text-danger">※パスワードを6文字以上で入力してください</p>
         <?php endif; ?>
       </div>
+
       <div class="text-center mt-5"><input type="submit" value="登録" class="btn btn-primary w-100"></div>
+
+      <div class="text-center mt-4"><a href="index.php" class="text-muted">すでに登録されている方</a></div>
     </form>
   </div>
 </body>
