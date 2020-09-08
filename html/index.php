@@ -32,7 +32,7 @@ $posts = $db->query('SELECT m.user_id, m.name, p.* FROM members m, posts p WHERE
 
     <div class="row my-5">
       <div class="col-10">
-        <p class="h3"><?php echo htmlspecialchars($member['name'], ENT_QUOTES); ?>さん <a href="">@<?php echo htmlspecialchars($member['user_id'], ENT_QUOTES); ?></a></p>
+        <p class="h3"><?php echo htmlspecialchars($member['name'], ENT_QUOTES); ?>さん <a href="profile.php?user_id=<?php echo htmlspecialchars($member['user_id'], ENT_QUOTES); ?>">@<?php echo htmlspecialchars($member['user_id'], ENT_QUOTES); ?></a></p>
       </div>
       <div class="col-2"><a href="post.php" class="btn btn-primary w-100">投稿する</a></div>
     </div>

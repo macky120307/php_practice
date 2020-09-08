@@ -25,13 +25,13 @@ $posts->execute(array($_REQUEST['id']));
     <?php if($post = $posts->fetch()): ?>
       <div class="row">
         <div class="col-md-8">
-          <p class="h3"><?php echo htmlspecialchars($post['name'], ENT_QUOTES); ?>さん <a href="">@<?php echo htmlspecialchars($post['user_id'], ENT_QUOTES); ?></a></p>
+          <p class="h3"><?php echo htmlspecialchars($post['name'], ENT_QUOTES); ?>さん <a href="profile.php?user_id=<?php echo htmlspecialchars($post['user_id'], ENT_QUOTES); ?>">@<?php echo htmlspecialchars($post['user_id'], ENT_QUOTES); ?></a></p>
         </div>
         <div class="col-md-4 back_home">
           <div class="text-right"><a href="index.php" class="text-muted">ホームに戻る</a></div>
         </div>
       </div>
-      <div class="mt-5 post_view">
+      <div class="my-5 post_view">
         <img src="img/<?php echo htmlspecialchars($post['picture'], ENT_QUOTES) ?>" class="w-100 h-auto">
         <pre class="mt-3 px-3 h4"><?php echo htmlspecialchars($post['comment'], ENT_QUOTES); ?></pre>
         <p class="text-muted text-right m-0 p-3"><?php echo htmlspecialchars($post['created'], ENT_QUOTES); ?></p>
